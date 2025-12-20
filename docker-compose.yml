@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  solana-bot:
+    build: .
+    container_name: scaling-solana-bot
+    restart: unless-stopped
+    environment:
+      - TELEGRAM_BOT_TOKEN=8547735832:AAFN8p1ZoRg3rEfRA3KLIPpS3sIEDK3iPeQ
+    volumes:
+      - ./logs:/app/logs
+      - ./Solanavm.jpg:/app/Solanavm.jpg
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('https://api.telegram.org/bot8547735832:AAFN8p1ZoRg3rEfRA3KLIPpS3sIEDK3iPeQ/getMe')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

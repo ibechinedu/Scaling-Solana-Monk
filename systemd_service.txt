@@ -1,0 +1,18 @@
+[Unit]
+Description=Scaling SolanaVM Private Sale Bot
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/SCALLING SOLANA BOT
+ExecStart=/usr/bin/python3 telegrambot.py
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=solana-bot
+
+[Install]
+WantedBy=multi-user.target

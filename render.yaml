@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: solana-trading-bot
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python telegrambot.py
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: SOLANA_RPC_URL
+        value: https://api.mainnet-beta.solana.com
+      - key: LOG_CHANNEL_ID
+        sync: false
+      - key: ADMIN_GROUP_ID
+        sync: false
+      - key: BACKEND_GROUP_ID
+        sync: false
