@@ -1,0 +1,10 @@
+schemaVersion: "1.2"
+endpoints:
+  - name: telegram-bot
+    displayName: telegram-bot
+    service:
+      basePath: /
+      port: 9090
+    type: REST
+    networkVisibilities:
+      - Public

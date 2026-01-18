@@ -747,6 +747,16 @@ def create_bot():
     return app
 
 def main():
+    # Start health server for Choreo
+    try:
+        from health_server import start_health_server
+        import threading
+        health_thread = threading.Thread(target=start_health_server, daemon=True)
+        health_thread.start()
+        logger.info("Health server started")
+    except ImportError:
+        logger.warning("Health server not available")
+    
     restart_count = 0
     max_restarts = 100
     
