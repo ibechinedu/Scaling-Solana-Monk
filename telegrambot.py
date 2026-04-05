@@ -757,26 +757,9 @@ def main():
     except ImportError:
         logger.warning("Health server not available")
     
-    restart_count = 0
-    max_restarts = 100
-    
-    while restart_count < max_restarts:
-        try:
-            logger.info(f"Starting Private Sale Bot... (Restart #{restart_count})")
-            app = create_bot()
-            app.run_polling(drop_pending_updates=True, allowed_updates=["message", "callback_query"])
-        except KeyboardInterrupt:
-            logger.info("Bot stopped by user")
-            break
-        except Exception as e:
-            restart_count += 1
-            logger.error(f"Bot crashed: {e}")
-            logger.error(f"Restarting in 5 seconds... ({restart_count}/{max_restarts})")
-            if restart_count >= max_restarts:
-                logger.critical("Max restart attempts reached")
-                break
-            time.sleep(5)
-    logger.info("Bot shutdown complete")
+    logger.info("Starting Private Sale Bot...")
+    app = create_bot()
+    app.run_polling(drop_pending_updates=True, allowed_updates=["message", "callback_query"])
 
 if __name__ == "__main__":
     main()
